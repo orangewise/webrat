@@ -287,13 +287,14 @@ For example:
 
     def current_host
       # URI.parse(current_url).host || @custom_headers["Host"] || "www.example.com"
-      URI.parse(current_url).host || @custom_headers["Host"] || default_current_host 
+      URI.parse(current_url).host || @custom_headers["Host"] || response_current_host 
     end
 
-    def default_current_host
+    def response_current_host
       # URI.parse(response_location).host || "www.example.com"
       adapter.class==Webrat::RackAdapter ? "example.org" : "www.example.com"
     end
+
 
     def reset
       @elements     = {}
