@@ -23,6 +23,14 @@ module Webrat
       end
     end
 
+    def click_post(options = {})
+      method = options[:method] || http_method
+      return if href =~ /^#/ && method == :get
+
+      @session.request_page(absolute_href, method, data)
+
+    end
+
   protected
 
     def id
